@@ -1,32 +1,28 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="indexblog">
+    <LoadPage />
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import LoadPage from "@/components/LoadPage.vue";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+//import octokit from "@/utils/octokit";
+export default {
+  name: "IndexBlog",
+  components: {
+    LoadPage,
+  },
+  mounted: function () {
+    this.$store.dispatch('BLOG_LOAD_INIT')
+    /*
+    octokit.request("GET /repos/{owner}/{repo}/issues", {
+      owner: "FireUnicornser",
+      repo: "govBlog",
+    }).then(function(json){
+      console.log(json.data)
+    })
+  */
+  },
+};
+</script>
